@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const raleway = Raleway({ subsets: ['cyrillic'] });
 
 export const metadata: Metadata = {
     title: 'Escape Room - Quests',
@@ -16,7 +18,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body
+                className={`relative text-sm text-[--text-color-primary] bg-[--home-background-color] ${raleway.className}`}
+            >
+                <Header />
+                <main className="h-full">{children}</main>
+                <Footer />
+            </body>
         </html>
     );
 }
