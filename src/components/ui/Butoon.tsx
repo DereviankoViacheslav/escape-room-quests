@@ -1,4 +1,4 @@
-export default function Button({
+export function Button({
     children,
 }: Readonly<{
     children: React.ReactNode;

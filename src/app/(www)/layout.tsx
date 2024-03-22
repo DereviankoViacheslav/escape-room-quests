@@ -7,7 +7,7 @@ export default function HomeLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="pt-[120px] px-[136px] pb-10">
+        <div className="py-[120px] px-[136px] pb-10">
             <h1 className="mb-1 text-[--text-color-secondary]">
                 квесты в Санкт-Петербурге
             </h1>
