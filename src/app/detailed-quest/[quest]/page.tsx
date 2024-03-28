@@ -1,10 +1,10 @@
-import { getQuests, getQuestById } from '@/actions/getQuests';
-import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { Categories } from '@/constants';
 import { InfoItem } from '@/components/InfoItem/InfoItem';
 import { Modal } from '@/components/Modal/Modal';
 import { Form } from '@/components/Form/Form';
+import { getQuests, getQuestById } from '@/actions/getQuests';
 import { registration } from '@/actions/registration';
 
 export async function generateStaticParams() {
@@ -31,7 +31,7 @@ export default async function Quest({
     const categoryLabel = Categories.find(
         ({ type: name }) => name === type,
     )?.label;
-    const open = show === 'true' ? true : false;
+    const open = show === 'true';
 
     return (
         <>
@@ -84,8 +84,8 @@ export default async function Quest({
                 </div>
             </div>
             {open && (
-                <Modal backUrl={`${quest}`}>
-                    <Form peopleCount={peopleCount} action={registration} />
+                <Modal>
+                    <Form peopleCount={peopleCount} onSubmit={registration} />
                 </Modal>
             )}
         </>

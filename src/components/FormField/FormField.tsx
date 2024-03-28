@@ -1,4 +1,6 @@
-export function FormField({
+import { Field, FormikErrors } from 'formik';
+
+export function FormField<T>({
     name,
     label,
     placeholder,
@@ -9,6 +11,7 @@ export function FormField({
     label: string;
     name: string;
     placeholder: string;
+    error: FormikErrors<T>;
     type?: string;
     min?: number;
     max?: number;
@@ -17,7 +20,7 @@ export function FormField({
         <>
             <label className="flex flex-col mb-8 text-base">
                 <span className="mb-4">{label}</span>
-                <input
+                <Field
                     type={type}
                     name={name}
                     min={min}

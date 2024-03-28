@@ -1,28 +1,25 @@
 'use server';
 
-export const registration = async (formData: FormData) => {
-    // formData.set('isLegal', 'true');
-    // formData.delete('$ACTION_ID_d313317bd3eca6155dc5c81e501fcc628a127422');
-    const data = Object.fromEntries(formData);
-    const { name, peopleCount, isLegal, phone } = data;
+import { FormFields } from '@/components/Form/Form';
 
-    const result = JSON.stringify({
-        name,
-        peopleCount: +peopleCount,
-        isLegal: isLegal === 'on',
-        phone,
-    });
-
+export const registration = async (data: FormFields): Promise<Error | 201> => {
     const payload: RequestInit = {
         method: 'POST',
-        body: result,
-        // body: formData,
+        body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'multipart/form-data',
         },
     };
 
-    const res = await fetch(`${process.env.API_BASE_PATH}/orders`, payload);
-    console.log('res--->>', await res.json());
+    try {
+        const res = await fetch(`${process.env.API_BASE_PATH}/orders`, payload);
+        const resJson = await res.json();
+        console.log('resJson--->>', resJson);
+        if (resJson === 201) {
+            return 201;
+        }
+        throw new Error(`Ошибка при регистрации!`);
+    } catch (error) {
+        return new Error(`Ошибка при регистрации: ${error}`);
+    }
 };
