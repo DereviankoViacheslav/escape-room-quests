@@ -1,4 +1,5 @@
 'use server';
+import db from '@/modules/db';
 
 export type Quest = {
     id: number;
@@ -12,40 +13,54 @@ export type Quest = {
     duration: number;
 };
 
-const revalidate = 60 * 60 * 24;
+// const revalidate = 60 * 60 * 24;
 
 export const getQuests = async (filters?: {
     category?: string;
 }): Promise<Quest[] | null> => {
-    const params = new URLSearchParams();
-    if (filters?.category) {
-        params.set('type', filters.category);
-    }
+    const res: Quest[] = await db.quest.findMany({
+        where: {
+            type: filters?.category,
+        },
+    });
 
-    const res = await fetch(
-        `${process.env.API_BASE_PATH}/quests?${params.toString()}`,
-        { next: { revalidate } },
-    );
+    // const params = new URLSearchParams();
+    // if (filters?.category) {
+    //     params.set('type', filters.category);
+    // }
 
-    if (!res.ok) {
-        return null;
-    }
+    // const res = await fetch(
+    //     `${process.env.API_BASE_PATH}/quests?${params.toString()}`,
+    //     { next: { revalidate } },
+    // );
 
-    const data: Quest[] = await res.json();
+    // if (!res.ok) {
+    //     return null;
+    // }
 
-    return data;
+    // const data: Quest[] = await res.json();
+
+    // return data;
+    return res;
 };
 
 export const getQuestById = async (id: string): Promise<Quest | null> => {
-    const res = await fetch(`${process.env.API_BASE_PATH}/quests/${id}`, {
-        next: { revalidate },
+    const res: Quest | null = await db.quest.findUnique({
+        where: {
+            id: +id,
+        },
     });
 
-    if (!res.ok) {
-        return null;
-    }
+    // const res = await fetch(`${process.env.API_BASE_PATH}/quests/${id}`, {
+    //     next: { revalidate },
+    // });
 
-    const data: Quest = await res.json();
+    // if (!res.ok) {
+    //     return null;
+    // }
 
-    return data;
+    // const data: Quest = await res.json();
+
+    // return data;
+    return res;
 };
