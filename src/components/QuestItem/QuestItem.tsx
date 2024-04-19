@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Quest } from '@/actions/getQuests';
+import { Quest } from '@prisma/client';
 import { InfoItem } from '@/components/InfoItem/InfoItem';
 
 export default function QuestItem({ quest }: { quest: Quest }) {

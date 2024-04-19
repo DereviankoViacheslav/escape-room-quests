@@ -1,4 +1,4 @@
-import { getQuests } from '@/actions/getQuests';
+import { getQuests } from '@/actions/quests';
 import QuestsList from '@/components/QuestsList/QuestsList';
 
 export default async function Home() {

@@ -3,9 +3,8 @@ import { notFound } from 'next/navigation';
 import { Categories } from '@/constants';
 import { InfoItem } from '@/components/InfoItem/InfoItem';
 import { Modal } from '@/components/Modal/Modal';
-import { Form } from '@/components/Form/Form';
-import { getQuests, getQuestById } from '@/actions/getQuests';
-import { registration } from '@/actions/registration';
+import { OrderForm } from '@/components/OrderForm/OrderForm';
+import { getQuests, getQuestById } from '@/actions/quests';
 
 export async function generateStaticParams() {
     const data = await getQuests();
@@ -85,7 +84,9 @@ export default async function Quest({
             </div>
             {open && (
                 <Modal>
-                    <Form peopleCount={peopleCount} onSubmit={registration} />
+                    <div className="flex flex-col max-w-[480px] p-8 rounded bg-[--home-background-color]">
+                        <OrderForm peopleCount={peopleCount} questId={+quest} />
+                    </div>
                 </Modal>
             )}
         </>

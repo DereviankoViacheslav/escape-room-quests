@@ -1,4 +1,4 @@
-import { Quest } from '@/actions/getQuests';
+import { Quest } from '@prisma/client';
 import QuestItem from '@/components/QuestItem/QuestItem';
 
 export default function QuestsList({ quests }: { quests: Quest[] | null }) {

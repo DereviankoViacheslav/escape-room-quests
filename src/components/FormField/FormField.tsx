@@ -1,31 +1,41 @@
-import { Field, FormikErrors } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 
-export function FormField<T>({
+export type TFormField = {
+    name: string;
+    type: string;
+    placeholder?: string;
+    label?: string;
+    min?: number;
+    max?: number;
+};
+
+export function FormField({
     name,
     label,
     placeholder,
-    type = 'text',
+    type,
     min = undefined,
     max = undefined,
-}: {
-    label: string;
-    name: string;
-    placeholder: string;
-    error: FormikErrors<T>;
-    type?: string;
-    min?: number;
-    max?: number;
-}) {
+}: TFormField) {
     return (
         <>
-            <label className="flex flex-col mb-8 text-base">
-                <span className="mb-4">{label}</span>
+            <label
+                className={`${type === 'hidden' ? 'hidden' : ''} flex mb-6 text-base ${type === 'checkbox' ? 'flex-row' : 'flex-col'}`}
+            >
+                <span
+                    className={`${type === 'checkbox' ? 'order-2 mb-0' : 'mb-2'}`}
+                >
+                    {label}
+                    <span className="ml-1 lowercase text-red-600">
+                        <ErrorMessage name={name} />
+                    </span>
+                </span>
                 <Field
                     type={type}
                     name={name}
                     min={min}
                     max={max}
-                    className="w-96 h-12 py-4 px-6 border rounded bg-transparent"
+                    className={`py-4 px-6 border rounded bg-transparent ${type === 'checkbox' ? 'h-4 mr-2' : 'h-12'}`}
                     placeholder={placeholder}
                 />
             </label>

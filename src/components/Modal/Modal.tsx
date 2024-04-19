@@ -1,4 +1,4 @@
-import { CloseIconModal } from '../CloseIconModal/CloseIconModal';
+import { CloseIconModal } from '@/components/CloseIconModal/CloseIconModal';
 
 export function Modal({ children }: { children: React.ReactNode }) {
     return (

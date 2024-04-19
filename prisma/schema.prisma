@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Quest {
-  id          Int @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   title       String
   description String
   previewImg  String
@@ -23,4 +23,25 @@ model Quest {
   level       String
   peopleCount Int[]
   duration    Int
+  Order       Order[]
+}
+
+model Order {
+  id          Int     @id @default(autoincrement())
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int
+  phone       String
+  peopleCount Int
+  isLegal     Boolean
+  quest       Quest   @relation(fields: [questId], references: [id])
+  questId     Int
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+  role     String? @default("user")
+  Order    Order[]
 }

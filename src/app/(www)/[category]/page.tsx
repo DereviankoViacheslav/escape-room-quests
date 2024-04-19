@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getQuests } from '@/actions/getQuests';
+import { getQuests } from '@/actions/quests';
 import { Categories } from '@/constants';
 import QuestsList from '@/components/QuestsList/QuestsList';
 
