@@ -25,10 +25,17 @@ export default async function Quest({
     if (!data) {
         notFound();
     }
-    const { coverImg, title, description, level, duration, peopleCount, type } =
-        data;
+    const {
+        coverImg,
+        title,
+        description,
+        level,
+        duration,
+        peopleCount,
+        category,
+    } = data;
     const categoryLabel = Categories.find(
-        ({ type: name }) => name === type,
+        ({ category: name }) => name === category,
     )?.label;
     const open = show === 'true';
 

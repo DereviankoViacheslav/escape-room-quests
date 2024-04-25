@@ -7,15 +7,17 @@ export default function Contacts() {
                 </h1>
                 <p className="text-6xl font-bold">Контакты</p>
             </div>
-            <div className='flex justify-between'>
+            <div className="flex justify-between">
                 <div>
-                    <p className='mb-2 font-bold'>Адрес</p>
-                    <p className='mb-9'>Санкт-Петербург, Набережная реки Карповка, д 5П</p>
-                    <p className='mb-2 font-bold'>Режим работы</p>
-                    <p className='mb-9'>Ежедневно, с 9:00 до 20:00</p>
-                    <p className='mb-2 font-bold'>Телефон</p>
-                    <p className='mb-9'>8 (800) 333-55-99</p>
-                    <p className='mb-2 font-bold'>E-mail</p>
+                    <p className="mb-2 font-bold">Адрес</p>
+                    <p className="mb-9">
+                        Санкт-Петербург, Набережная реки Карповка, д 5П
+                    </p>
+                    <p className="mb-2 font-bold">Режим работы</p>
+                    <p className="mb-9">Ежедневно, с 9:00 до 20:00</p>
+                    <p className="mb-2 font-bold">Телефон</p>
+                    <p className="mb-9">8 (800) 333-55-99</p>
+                    <p className="mb-2 font-bold">E-mail</p>
                     <p>info@escape-room.ru</p>
                 </div>
                 <iframe

@@ -1,26 +1,28 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 type NavLink = {
-    label: string;
+    name: string;
     href: string;
 };
 
 const BOOKS: NavLink[] = [
-    { href: '/', label: 'квесты' },
-    { href: '/beginner', label: 'новичкам' },
-    { href: '/feedbacks', label: 'отзывы' },
-    { href: '/promotions', label: 'акции' },
-    { href: '/contacts', label: 'контакты' },
+    { href: '/', name: 'quests' },
+    { href: '/beginner', name: 'beginner' },
+    { href: '/feedbacks', name: 'feedbacks' },
+    { href: '/promotions', name: 'promotions' },
+    { href: '/contacts', name: 'contacts' },
 ];
 
 export default function Navigation() {
     const pathName = usePathname();
+    const { t } = useTranslation();
 
     return (
         <nav className="flex gap-12">
-            {BOOKS.map(({ href, label }) => {
+            {BOOKS.map(({ href, name }) => {
                 const isActive = pathName === href;
                 return (
                     <Link
@@ -28,7 +30,7 @@ export default function Navigation() {
                         href={href}
                         className={`hover:[color:--text-color-secondary] ${isActive ? 'text-[--text-color-secondary]' : ''}`}
                     >
-                        {label}
+                        {t(`${name}`)}
                     </Link>
                 );
             })}

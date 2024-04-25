@@ -11,7 +11,7 @@ export default function Footer() {
                     height={36}
                 />
             </a>
-            <a href="https://vk.com" target='_blank'>
+            <a href="https://vk.com" target="_blank">
                 <Image
                     src="/icons/vk.svg"
                     alt="VK icon"

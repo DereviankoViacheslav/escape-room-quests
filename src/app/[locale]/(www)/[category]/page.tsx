@@ -4,7 +4,7 @@ import { Categories } from '@/constants';
 import QuestsList from '@/components/QuestsList/QuestsList';
 
 export async function generateStaticParams() {
-    return Categories.map(({ type: href }) => ({ category: href })) as any[];
+    return Categories.map(({ category: href }) => ({ category: href })) as any[];
 }
 
 export default async function Category({
@@ -12,7 +12,7 @@ export default async function Category({
 }: {
     params: { category: string };
 }) {
-    const categoryItem = Categories.find(({ type }) => type === category);
+    const categoryItem = Categories.find(({ category }) => category === category);
     if (!categoryItem) {
         notFound();
     }

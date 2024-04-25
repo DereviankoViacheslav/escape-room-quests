@@ -41,7 +41,7 @@ export function SigninForm() {
                     password: data.password,
                 });
                 if (res === 201) {
-                    router.push('/');
+                    router.replace('/');
                 }
             }}
             formFields={formFields}
