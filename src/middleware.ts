@@ -10,15 +10,17 @@ export default async function middleware(req: NextRequest) {
     const isProtectedRoute = !publicRoutes.includes(path);
     const userId = cookies().get('userId')?.value;
 
-    // if (isProtectedRoute && !userId) {
-    //     return NextResponse.redirect(
-    //         new URL(`/${i18nConfig.defaultLocale}/signin`, req.nextUrl),
-    //     );
-    // }
+    if (!userId && isProtectedRoute) {
+        req.nextUrl.pathname = `/signin`;
+        i18nRouter(req, i18nConfig);
+        return NextResponse.redirect(req.nextUrl);
+    }
 
-    // if (!isProtectedRoute && userId && !req.nextUrl.pathname.startsWith('/')) {
-    //     return NextResponse.redirect(new URL(`/`, req.nextUrl));
-    // }
+    if (!isProtectedRoute && userId) {
+        req.nextUrl.pathname = `/`;
+        i18nRouter(req, i18nConfig);
+        return NextResponse.redirect(req.nextUrl);
+    }
 
     // return NextResponse.next();
     return i18nRouter(req, i18nConfig);

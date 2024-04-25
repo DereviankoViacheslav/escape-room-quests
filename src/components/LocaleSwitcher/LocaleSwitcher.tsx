@@ -1,15 +1,15 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
-import { i18nConfig } from '@/configs/i18nConfig';
 import { ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+// import { usePathname } from 'next/navigation';
+// import { i18nConfig } from '@/configs/i18nConfig';
 
 export default function LocaleSwitcher() {
     const { i18n } = useTranslation();
     const currentLocale = i18n.language;
     const router = useRouter();
-    const currentPathname = usePathname();
+    // const currentPathname = usePathname();
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const newLocale = e.target.value;
@@ -21,16 +21,16 @@ export default function LocaleSwitcher() {
         document.cookie = `NEXT_LOCALE=${newLocale};expires=${date.toUTCString()};path=/`;
 
         // redirect to the new locale path
-        if (
-            currentLocale === i18nConfig.defaultLocale &&
-            !i18nConfig.prefixDefault
-        ) {
-            router.push('/' + newLocale + currentPathname);
-        } else {
-            router.push(
-                currentPathname.replace(`/${currentLocale}`, `/${newLocale}`),
-            );
-        }
+        // if (
+        //     currentLocale === i18nConfig.defaultLocale &&
+        //     !i18nConfig.prefixDefault
+        // ) {
+        //     router.push('/' + newLocale + currentPathname);
+        // } else {
+        //     router.push(
+        //         currentPathname.replace(`/${currentLocale}`, `/${newLocale}`),
+        //     );
+        // }
 
         router.refresh();
     };
@@ -42,7 +42,6 @@ export default function LocaleSwitcher() {
         </select>
     );
 }
-
 
 // import { usePathname } from 'next/navigation';
 // import Link from 'next/link';
