@@ -1,5 +1,4 @@
 'use server';
-import db from '@/modules/db';
 import { Order } from '@prisma/client';
 import { cookies } from 'next/headers';
 
@@ -21,6 +20,8 @@ export const createOrder = async (order: TOrderData): Promise<Error | 201> => {
             method: 'POST',
             body: JSON.stringify(data),
         });
+        console.log(res);
+
         return 201;
     } catch (error) {
         return new Error(`Ошибка при регистрации на квест: ${error}`);

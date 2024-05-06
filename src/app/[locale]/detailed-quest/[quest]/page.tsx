@@ -32,10 +32,10 @@ export default async function Quest({
         level,
         duration,
         peopleCount,
-        category,
+        type,
     } = data;
     const categoryLabel = Categories.find(
-        ({ category: name }) => name === category,
+        ({ type: name }) => name === type,
     )?.label;
     const open = show === 'true';
 
