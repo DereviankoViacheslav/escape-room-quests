@@ -27,6 +27,7 @@ export default async function RootLayout({
     return (
         <html lang={locale} dir={dir(locale)}>
             <body
+                suppressHydrationWarning={true}
                 className={`relative text-sm text-[--text-color-primary] bg-[--home-background-color] ${raleway.className}`}
             >
                 <Header locale={locale} />

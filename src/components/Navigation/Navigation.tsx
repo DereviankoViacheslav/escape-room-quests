@@ -30,7 +30,7 @@ export default function Navigation() {
                         href={href}
                         className={`hover:[color:--text-color-secondary] ${isActive ? 'text-[--text-color-secondary]' : ''}`}
                     >
-                        {t(`${name}`)}
+                        {t(`MenuList:${name}`)}
                     </Link>
                 );
             })}
