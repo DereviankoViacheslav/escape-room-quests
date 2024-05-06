@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Raleway } from 'next/font/google';
 import './globals.css';
 import { dir } from 'i18next';
-import { Locale, i18nConfig } from '@/configs/i18nConfig';
+import { Locale } from '@/configs/i18nConfig';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     description: 'Escape Room - Quests',
 };
 
-export async function generateStaticParams() {
-    return i18nConfig.locales.map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+//     return i18nConfig.locales.map((locale) => ({ locale }));
+// }
 
 export default async function RootLayout({
     children,
