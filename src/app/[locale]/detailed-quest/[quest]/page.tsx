@@ -4,15 +4,15 @@ import { Categories } from '@/constants';
 import { InfoItem } from '@/components/InfoItem/InfoItem';
 import { Modal } from '@/components/Modal/Modal';
 import { OrderForm } from '@/components/OrderForm/OrderForm';
-import { getQuests, getQuestById } from '@/actions/quests';
+import { getQuestById } from '@/actions/quests';
 
-export async function generateStaticParams() {
-    const data = await getQuests();
-    if (data) {
-        return data.map(({ id }) => ({ quest: `${id}` })) as any[];
-    }
-    return [];
-}
+// export async function generateStaticParams() {
+//     const data = await getQuests();
+//     if (data) {
+//         return data.map(({ id }) => ({ quest: `${id}` })) as any[];
+//     }
+//     return [];
+// }
 
 export default async function Quest({
     params: { quest },
@@ -25,15 +25,8 @@ export default async function Quest({
     if (!data) {
         notFound();
     }
-    const {
-        coverImg,
-        title,
-        description,
-        level,
-        duration,
-        peopleCount,
-        type,
-    } = data;
+    const { coverImg, title, description, level, duration, peopleCount, type } =
+        data;
     const categoryLabel = Categories.find(
         ({ type: name }) => name === type,
     )?.label;
