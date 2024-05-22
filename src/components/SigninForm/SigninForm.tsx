@@ -30,6 +30,14 @@ const formFields: TFormField[] = [
     },
 ];
 
+export interface IServerActionError<T> {
+    error: T;
+}
+
+export function isServerActionError<T>(obj: any): obj is IServerActionError<T> {
+    return 'error' in obj;
+}
+
 export function SigninForm() {
     const router = useRouter();
 
@@ -40,6 +48,11 @@ export function SigninForm() {
                     email: data.email,
                     password: data.password,
                 });
+                if (isServerActionError(res)) {
+                    // TODO
+                    throw new Error("...........");
+
+                }
                 if (res === 201) {
                     router.replace('/');
                 }

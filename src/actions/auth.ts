@@ -19,21 +19,34 @@ export const signUp = async (data: TUserData): Promise<Error | 201> => {
     return 201;
 };
 
-export const signIn = async (data: TUserData): Promise<Error | 201> => {
-    const params = new URLSearchParams();
-    params.set('email', data.email);
-    const path = `${process.env.API_BASE_PATH}/api/auth?${params.toString()}`;
+export const signIn = async (
+    data: TUserData,
+): Promise<
+    | {
+          error: any;
+      }
+    | 201
+> => {
+    try {
+        const params = new URLSearchParams();
+        params.set('email', data.email);
+        const path = `${process.env.API_BASE_PATH}/api/auth?${params.toString()}`;
 
-    const res = await fetch(path, { cache: 'no-store' });
+        const res = await fetch(path, { cache: 'no-store' });
 
-    if (!res.ok) {
-        return new Error('Ошибка при входе');
+        if (!res.ok) {
+            throw new Error('Ошибка при входе');
+        }
+
+        const user = await res.json();
+        cookies().set('userId', `${user.id}`);
+
+        return 201;
+    } catch (error) {
+        return {
+            error,
+        };
     }
-
-    const user = await res.json();
-    cookies().set('userId', `${user.id}`);
-
-    return 201;
 };
 
 export const logOut = () => {
